@@ -10,11 +10,11 @@
         <title>Traveller's</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="<?php echo base_url();?>/assets/web/css/bootstrap.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>assets/web/css/bootstrap.css" rel="stylesheet">
 
         <!-- Add custom CSS here -->
-        <link href="<?php echo base_url();?>/assets/web/css/style.css" rel="stylesheet">
-        <link href="<?php echo base_url();?>/assets/web/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>assets/web/css/style.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>assets/web/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
@@ -63,7 +63,7 @@
                 </h3><br />
                 <a href="#about" class="btn header-btn">Find Out More</a>
                 <br/>
-                <a href="#about"><img src="<?php echo base_url();?>/assets/web/img/direction.png" class="space" alt="Direction"></a>
+                <a href="#about"><img src="<?php echo base_url();?>assets/web/img/direction.png" class="space" alt="Direction"></a>
             </div>
         </div>
         <!-- /Full Page Image Header Area -->
@@ -79,7 +79,7 @@
                         </div>
                         <div class="divide50"></div>
                         <div class="col-sm-4">
-                          <figure><img src="<?php echo base_url();?>/assets/web/img/office.jpg" alt="" style="width: 100%;"></figure>
+                          <figure><img src="<?php echo base_url();?>assets/web/img/office.jpg" alt="" style="width: 100%;"></figure>
                         </div>
                         <div class="col-sm-8">
                           <h4>Our Working Place</h4>
@@ -141,7 +141,7 @@
                           <h4>Our Transports</h4><hr>
                           <div class="divide10"></div>
                           <div class="services-2">
-                            <div class="icon"> <img src="<?php echo base_url();?>/assets/web/img/icon-web.png" data-src="style/images/icons/icon-web.png" data-ret="style/images/icons/icon-web@2x.png" class="retina" alt="" /> </div>
+                            <div class="icon"> <img src="<?php echo base_url();?>assets/web/img/icon-web.png" data-src="style/images/icons/icon-web.png" data-ret="style/images/icons/icon-web@2x.png" class="retina" alt="" /> </div>
                             <!-- /.icon -->
                             <div class="text">
                               <h5>Responsive Layout</h5>
@@ -149,7 +149,7 @@
                             </div>
                             <!-- /.text -->
                             <div class="divide20"></div>
-                            <div class="icon"> <img src="<?php echo base_url();?>/assets/web/img/icon-heart.png" data-src="style/images/icons/icon-heart.png" data-ret="style/images/icons/icon-heart@2x.png" class="retina" alt="" /> </div>
+                            <div class="icon"> <img src="<?php echo base_url();?>assets/web/img/icon-heart.png" data-src="style/images/icons/icon-heart.png" data-ret="style/images/icons/icon-heart@2x.png" class="retina" alt="" /> </div>
                             <!-- /.icon -->
                             <div class="text">
                               <h5>Flat & Clean design</h5>
@@ -157,7 +157,7 @@
                             </div>
                             <!-- /.text -->
                             <div class="divide20"></div>
-                            <div class="icon"> <img src="<?php echo base_url();?>/assets/web/img/icon-print.png" data-src="style/images/icons/icon-print.png" data-ret="style/images/icons/icon-print@2x.png" class="retina" alt="" /> </div>
+                            <div class="icon"> <img src="<?php echo base_url();?>assets/web/img/icon-print.png" data-src="style/images/icons/icon-print.png" data-ret="style/images/icons/icon-print@2x.png" class="retina" alt="" /> </div>
                             <!-- /.icon -->
                             <div class="text">
                               <h5>Print Design</h5>
@@ -249,7 +249,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="grid center-block">
                             <figure class="effect-zoe">
-                                <img src="<?php echo base_url();?>/assets/web/img/paris.jpg" alt="paris" class="img-responsive center-block">
+                                <img src="<?php echo base_url();?>assets/web/img/paris.jpg" alt="paris" class="img-responsive center-block">
                                 <figcaption>
                                     <h2>Paris</h2>
                                     <p class="icon-links">
@@ -267,7 +267,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="grid center-block">
                             <figure class="effect-zoe">
-                                <img src="<?php echo base_url();?>/assets/web/img/sydney.jpg" alt="sydney" class="img-responsive center-block">
+                                <img src="<?php echo base_url();?>assets/web/img/sydney.jpg" alt="sydney" class="img-responsive center-block">
                                 <figcaption>
                                     <h2>Sydney</h2>
                                     <p class="icon-links">
@@ -287,7 +287,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="grid center-block">
                             <figure class="effect-zoe">
-                                <img src="<?php echo base_url();?>/assets/web/img/washington.jpg" alt="washington" class="img-responsive center-block">
+                                <img src="<?php echo base_url();?>assets/web/img/washington.jpg" alt="washington" class="img-responsive center-block">
                                 <figcaption>
                                     <h2>Washington</h2>
                                     <p class="icon-links">
@@ -305,7 +305,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="grid center-block">
                             <figure class="effect-zoe">
-                                <img src="<?php echo base_url();?>/assets/web/img/london.jpg" alt="london" class="img-responsive center-block">
+                                <img src="<?php echo base_url();?>assets/web/img/london.jpg" alt="london" class="img-responsive center-block">
                                 <figcaption>
                                     <h2>London</h2>
                                     <p class="icon-links">
@@ -325,7 +325,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="grid center-block">
                             <figure class="effect-zoe">
-                                <img src="<?php echo base_url();?>/assets/web/img/statue_of_liberty.jpg" alt="statue_of_liberty" class="img-responsive center-block">
+                                <img src="<?php echo base_url();?>assets/web/img/statue_of_liberty.jpg" alt="statue_of_liberty" class="img-responsive center-block">
                                 <figcaption>
                                     <h2>U.S.A</h2>
                                     <p class="icon-links">
@@ -343,7 +343,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="grid center-block">
                             <figure class="effect-zoe">
-                                <img src="<?php echo base_url();?>/assets/web/img/pizza_tower.jpg" alt="pizza_tower" class="img-responsive center-block">
+                                <img src="<?php echo base_url();?>assets/web/img/pizza_tower.jpg" alt="pizza_tower" class="img-responsive center-block">
                                 <figcaption>
                                     <h2>Pizza Tower</h2>
                                     <p class="icon-links">
@@ -500,9 +500,9 @@
         <!-- end:booking -->
 
         <!-- JavaScript -->
-        <script src="<?php echo base_url();?>/assets/web/js/jquery-1.10.2.js"></script>
-        <script src="<?php echo base_url();?>/assets/web/js/bootstrap.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>/assets/web/js/jquery.parallax-1.1.3.js"></script>
+        <script src="<?php echo base_url();?>assets/web/js/jquery-1.10.2.js"></script>
+        <script src="<?php echo base_url();?>assets/web/js/bootstrap.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/web/js/jquery.parallax-1.1.3.js"></script>
 
         <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
         <script>
