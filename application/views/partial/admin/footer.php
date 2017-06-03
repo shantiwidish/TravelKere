@@ -1,5 +1,5 @@
-<!-- jQuery 2.2.3 -->
-<script src="<?php echo base_url();?>/assets/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -9,8 +9,8 @@
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo base_url();?>/assets/admin/bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="<?php echo base_url();?>/assets/admin/plugins/morris/morris.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+<!-- <script src="<?php echo base_url();?>/assets/admin/plugins/morris/morris.min.js"></script> -->
 <!-- Sparkline -->
 <script src="<?php echo base_url();?>/assets/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -32,8 +32,8 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>/assets/admin/dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url();?>/assets/admin/dist/js/pages/dashboard.js"></script>
+<!-- <script src="<?php echo base_url();?>/assets/admin/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url();?>/assets/admin/dist/js/demo.js"></script>
+<!-- <script src="<?php echo base_url();?>/assets/admin/dist/js/demo.js"></script> -->
 </body>
 </html>

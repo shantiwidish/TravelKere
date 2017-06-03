@@ -22,7 +22,12 @@
 
     <!-- Main content -->
     <section class="content">
-      <?php echo $content;?>
+      <?php
+      if(isset($form_data))
+        $this->load->view($content, $form_data);
+      else
+        $this->load->view($content);
+      ?>
     </section>
     <!-- /.content -->
   </div>
