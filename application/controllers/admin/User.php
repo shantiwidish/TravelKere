@@ -14,8 +14,42 @@ class User extends MY_Controller {
 
   public function form_login(){
     $this->load->view('partial/admin/header', $this->data);
-    $this->load->view('admin/login');
+    $this->load->view('login');
     $this->load->view('partial/admin/footer.php');
+  }
+
+  public function form_register(){
+    $this->load->view('partial/admin/header', $this->data);
+    $this->load->view('register');
+    $this->load->view('partial/admin/footer.php');
+  }
+
+  public function doLogin(){
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+    $this->load->model('User_model','user');
+    $enc_passw = $this->user->hidemypassword($password);
+    $result = $this->user->authentication($username, $enc_passw);
+    if(sizeof($result)>0){
+      $user = $result[0];
+      $admin = FALSE;
+      if($user->is_admin == 1)
+        $admin = TRUE;
+      $newdata = array(
+        'username'  => $user->username,
+        'email'     => $user->email,
+        'is_admin' => $admin,
+        'profile_picture' => $user->image
+      );
+      $this->session->set_userdata($newdata);
+    }
+    redirect('/');
+  }
+
+  public function doLogOut(){
+    $field = array('username','email','is_admin','profile_picture');
+    $this->session->unset_userdata($field);
+    redirect('/');
   }
 
   public function index()
@@ -52,7 +86,7 @@ class User extends MY_Controller {
       'email' => $this->input->post('email')
     );
     $result = $this->user->get_by_column(array("username","email"), $form_data);
-    if(sizeof($result)==0){
+    if(sizeof($result)>0){
       set_message_error("Username or Email already used!");
       redirect('/admin/user/form');
     }

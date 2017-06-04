@@ -1,4 +1,5 @@
-<body class="hold-transition login-page">
+<link rel="stylesheet" href="<?php echo base_url();?>/assets/travelkere.css">
+<body class="hold-transition login-page bgimg">
 <div class="login-box">
   <div class="login-logo">
     <a href="/"><b>Travel</b>Kere</a>
@@ -16,20 +17,10 @@
         <input name="password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <!-- <input type="checkbox"> Remember Me -->
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
+      <div class="form-group has-feedback">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Log In</button>
       </div>
+
     </form>
 
     <!-- <div class="social-auth-links text-center">
@@ -40,11 +31,12 @@
         Google+</a>
     </div> -->
     <!-- /.social-auth-links -->
-
-    <!-- <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a> -->
+    <center>
+    <p>Not registered yet? <a href="<?php echo base_url()."admin/user/form_register"?>">Sign Up</a></p>
+    <a href="#">Forgot Password</a><br>
+  </center>
 
   </div>
-  <!-- /.login-box-body -->
+
 </div>
 </body>

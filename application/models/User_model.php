@@ -16,6 +16,7 @@ class User_model extends MY_Model {
   public function authentication($username, $password){
     $this->db->where("username = '".$username."' and password ='".$password."'");
     $query = $this->db->get($this->table);
+    // echo $this->db->last_query();die();
     return $query->result();
   }
 

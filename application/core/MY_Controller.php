@@ -12,25 +12,13 @@ class MY_Controller extends CI_Controller
 	}
 
 	public function isLogin(){
+		// var_dump($_SESSION);die();
 		$username = $this->session->userdata('username');
 		if(isset($username) or $username != NULL){
 			return TRUE;
 		}else{
 			return FALSE;
 		}
-	}
-
-	public function doLogin($username, $password){
-		$this->load->model('User_model','user');
-		$enc_passw = $this->user->hidemypassword($password);
-		$result = $this->user->authentication($username, $enc_passw);
-		if(sizeof($result)>0){
-			$this->session->set_userdata('username', $result->username);
-		}
-	}
-
-	public function doLogOut(){
-		$this->session->unset_userdata('username');
 	}
 
 	public function control_view($data, $content){

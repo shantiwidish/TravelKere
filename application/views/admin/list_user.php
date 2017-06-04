@@ -9,13 +9,14 @@
   $(function () {
     $('#usertable').DataTable({
       "paging": true,
-      "lengthChange": false,
       "searching": false,
       "ordering": true,
       "info": true,
-      "autoWidth": false
+      "responsive": true
     });
   });
+//      "autoWidth": false,
+//            "lengthChange": false,
 
   function doDelete(id){
     var r = confirm("Are you sure want to delete this user?");

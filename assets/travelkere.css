@@ -1,0 +1,63 @@
+.login-box-body, .register-box-body{
+  background:none;!important;
+  padding: 0;important!;
+}
+.register-box{
+  width: 730px;!important;
+}
+.login-logo{
+  margin-bottom:0px;!important;
+}
+/* Show in Large desktops and laptops */
+@media (min-width: 1200px) {
+
+.bgimg {
+        background-image: url('images/background.jpg');
+        background-repeat: no-repeat;
+        background-size:100% auto;
+    }
+
+}
+
+/*Hide in Other Small Devices */
+
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+      .bgimg {
+        background-image: none;
+        background-color: #72afd2;
+    }
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+          .bgimg {
+        background-image: none;
+        background-color: #72afd2;
+    }
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+          .bgimg {
+        background-image: none;
+        background-color: #72afd2;
+    }
+
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+          .bgimg {
+        background-image: none;
+        background-color: #72afd2;
+    }
+
+}
