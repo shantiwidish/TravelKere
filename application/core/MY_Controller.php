@@ -11,6 +11,18 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 	}
 
+	public function get_session_data(){
+		$data = array(
+			'user_id' => $this->session->userdata('user_id'),
+			'fullname' => $this->session->userdata('fullname'),
+			'username'  => $this->session->userdata('username'),
+			'email'     => $this->session->userdata('email'),
+			'is_admin' => $this->session->userdata('is_admin'),
+			'profile_picture' => $this->session->userdata('profile_picture')
+		);
+		return $data;
+	}
+
 	public function isLogin(){
 		// var_dump($_SESSION);die();
 		$username = $this->session->userdata('username');
@@ -26,6 +38,7 @@ class MY_Controller extends CI_Controller
 		$this->load->view('partial/admin/body', $content);
 		$this->load->view('partial/admin/footer.php');
 	}
+
 }
 
 /* End of file MY_Controller.php */

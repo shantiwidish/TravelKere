@@ -8,8 +8,8 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Create your <b>Travel</b>Kere Account</p>
-
-    <form action="<?php echo base_url()."/admin/user/doLogin"?>" method="post">
+    <?php get_message_error();?>
+    <form action="<?php echo base_url()."/member/add"?>" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group has-feedback">
@@ -30,7 +30,7 @@
           </div>
           <div class="form-group has-feedback">
             <label>Address</label>
-            <input name="address" type="address" class="form-control" placeholder="Address" required >
+            <textarea name="address" class="form-control" rows="3" placeholder="Enter ..."></textarea>
           </div>
         </div>
         <div class="col-md-6">

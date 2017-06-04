@@ -16,6 +16,7 @@ class MY_Model extends CI_Model {
   public function update_data($id, $data){
     $this->db->where('id', $id);
     $this->db->update($this->table, $data);
+    // echo $this->db->last_query();die();
   }
 
   public function delete_by_id($id){

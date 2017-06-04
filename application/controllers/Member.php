@@ -1,41 +1,83 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends MY_Controller {
+class Member extends MY_Controller {
   private $data;
 
-	function __construct()
+  function __construct()
   {
-		 parent::__construct();
-     $this->data = array('page_title'=>'User Administration',
+     parent::__construct();
+     $this->data = array('page_title'=>'Home',
           'page_subtitle'=>'',
           'page_breadcrumb'=>array('User'));
-	}
+  }
 
   public function index()
-	{
-    $this->data['page_subtitle'] = "User List";
-    $this->data['page_breadcrumb'][1] = 'list';
-    $this->load->model('User_model','user');
-    $result = $this->user->get_all(TRUE);
-    $content = array('content'=>'admin/list_user', 'form_data'=> $result);
-		$this->control_view($this->data, $content);
-	}
-
-  public function form($id=NULL){
-    $this->data['page_subtitle'] = "User Form";
-    $this->data['page_breadcrumb'][1] = 'Add';
-    $content = array('content'=>'admin/add_user');
-    if($id != NULL){
-      $this->data['page_breadcrumb'][1] = 'Edit';
-      $this->load->model('User_model','user');
-      $result = $this->user->get_by_id($id, TRUE);
-      $form_data = $result[0];
-      $content = array('content'=>'admin/edit_user',
-                'form_data'=>$form_data);
+  {
+    if($this->isLogin()){
+      $this->data['page_subtitle'] = "Dashboard";
+      $this->load->view('partial/header', $this->data);
+      $content = array("content"=>"dashboard","session_data"=>$this->get_session_data());
+      $this->load->view('partial/body', $content);
+      $this->load->view('partial/footer.php');
     }
+    else {
+      redirect('/member/form_login');
+    }
+  }
 
-    $this->control_view($this->data, $content);
+  public function edit_profile($id){
+    $this->load->model('User_model','user');
+    $result = $this->user->get_by_id($id, TRUE);
+    $form_data = $result[0];
+    $this->data['page_subtitle'] = "Edit Profile";
+    $this->load->view('partial/header', $this->data);
+    $content = array("content"=>"edit_profile","session_data"=>$this->get_session_data(),
+    "form_data"=>$form_data);
+    $this->load->view('partial/body', $content);
+    $this->load->view('partial/footer.php');
+  }
+
+  public function form_login(){
+    $this->load->view('partial/header', $this->data);
+    $this->load->view('login');
+    $this->load->view('partial/footer.php');
+  }
+
+  public function form_register(){
+    $this->load->view('partial/header', $this->data);
+    $this->load->view('register');
+    $this->load->view('partial/footer.php');
+  }
+
+  public function doLogin(){
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+    $this->load->model('User_model','user');
+    $enc_passw = $this->user->hidemypassword($password);
+    $result = $this->user->authentication($username, $enc_passw);
+    if(sizeof($result)>0){
+      $user = $result[0];
+      $admin = FALSE;
+      if($user->is_admin == 1)
+        $admin = TRUE;
+      $newdata = array(
+        'user_id' => $user->id,
+        'fullname' => $user->fullname,
+        'username'  => $user->username,
+        'email'     => $user->email,
+        'is_admin' => $admin,
+        'profile_picture' => $user->image
+      );
+      $this->session->set_userdata($newdata);
+    }
+    redirect('/');
+  }
+
+  public function doLogOut(){
+    $field = array('user_id','fullname','username','email','is_admin','profile_picture');
+    $this->session->unset_userdata($field);
+    redirect('/');
   }
 
   public function add(){
@@ -48,19 +90,15 @@ class User extends MY_Controller {
     $result = $this->user->get_by_column(array("username","email"), $form_data);
     if(sizeof($result)>0){
       set_message_error("Username or Email already used!");
-      redirect('/admin/user/form');
+      redirect('/member/register');
     }
     if($this->input->post('password') == $this->input->post('re_password')){
       $form_data['password'] = $this->user->hidemypassword($this->input->post('password'));
     }else{
       set_message_error("Password not match!");
-      redirect('/admin/user/form');
+      redirect('/member/register');
     }
-    if($this->input->post('is_admin')!=NULL){
-      $form_data['is_admin'] = 1;
-    }else{
-      $form_data['is_admin'] = 0;
-    }
+
     $filename =  $this->do_upload();
     if($filename){
       $form_data['image'] = $filename;
@@ -74,12 +112,6 @@ class User extends MY_Controller {
     $form_data = array(
       'fullname' => $this->input->post('fullname')
     );
-
-    if($this->input->post('is_admin')!=NULL){
-      $form_data['is_admin'] = 1;
-    }else{
-      $form_data['is_admin'] = 0;
-    }
 
     $filename =  $this->do_upload();
     if($filename!=NULL){
@@ -115,28 +147,4 @@ class User extends MY_Controller {
           }
   }
 
-  //Test Function Email not working
-  public function sendEmail(){
-    $this->load->helper('mailin');
-    $mailin = new Mailin('https://api.sendinblue.com/v2.0', 'xVBkG3Jthc5m6EvZ', 5000);    //Optional parameter: Timeout in MS
-    var_dump($mailin->get_account());
-    $data = array( "to" => array("bobbisenatarachman@gmail.com"=>"Bobbi Senata Rachman"),
-            "from" => array("travelkere.info@gmail.com", "Travel Kere"),
-            "subject" => "My subject",
-            "html" => "This is the <h1>HTML</h1>"
-      );
-
-    var_dump($mailin->send_email($data));die();
-
-    // $this->load->library('email');
-    //
-    // $this->email->from('travelkere.info@gmail.com', 'Travel Kere');
-    // $this->email->to('bobbi.senata@gmail.com');
-    // $this->email->cc('shantiwidiyawati@gmail.com');
-    //
-    // $this->email->subject('Email Test');
-    // $this->email->message('Testing the email class.');
-    // var_dump($this->email->send());
-    // $this->email->print_debugger();die();
-  }
 }

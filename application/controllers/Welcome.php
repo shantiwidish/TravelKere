@@ -21,10 +21,10 @@ class Welcome extends MY_Controller {
 	public function index()
 	{
 		if($this->isLogin()){
-					$this->load->view('welcome_message');
+				redirect('/member/');
 		}
 		else {
-			redirect('/admin/user/form_login');
+			redirect('/member/form_login');
 		}
 	}
 }

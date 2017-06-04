@@ -8,7 +8,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="<?php echo base_url()."/admin/user/doLogin"?>" method="post">
+    <form action="<?php echo base_url()."/member/doLogin"?>" method="post">
       <div class="form-group has-feedback">
         <input name="username" type="text" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

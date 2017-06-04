@@ -2,7 +2,7 @@
 <?
     $action = base_url()."/admin/user/edit";
     $label = "Edit User";
-    $hidden_id = "<input type='hidden' name='id' value'".$form_data['id']."'>";
+    $hidden_id = "<input type='hidden' name='id' value='".$form_data['id']."'>";
 ?>
 <form action="<?php echo $action;?>" method="post" enctype="multipart/form-data">
   <?php echo $hidden_id;?>
