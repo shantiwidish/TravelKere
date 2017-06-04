@@ -12,6 +12,12 @@ class User extends MY_Controller {
           'page_breadcrumb'=>array('User'));
 	}
 
+  public function form_login(){
+    $this->load->view('partial/admin/header', $this->data);
+    $this->load->view('admin/login');
+    $this->load->view('partial/admin/footer.php');
+  }
+
   public function index()
 	{
     $this->data['page_subtitle'] = "User List";
@@ -38,20 +44,6 @@ class User extends MY_Controller {
     $this->control_view($this->data, $content);
   }
 
-  public function test(){
-    $this->load->model('User_model','user');
-    $form_data = array(
-      'fullname' => "asdf",
-      'email' => "asdf@123123.com",
-      'username'=> "asdf"
-    );
-    $result = $this->user->get_by_column(array("email"), $form_data);
-    print_r($result);die();
-
-    $message =    $this->user->add_data($form_data);
-    var_dump($message);
-  }
-
   public function add(){
     $this->load->model('User_model','user');
     $form_data = array(
@@ -65,7 +57,7 @@ class User extends MY_Controller {
       redirect('/admin/user/form');
     }
     if($this->input->post('password') == $this->input->post('re_password')){
-      $form_data['password'] = $this->input->post('password');
+      $form_data['password'] = $this->user->hidemypassword($this->input->post('password'));
     }else{
       set_message_error("Password not match!");
       redirect('/admin/user/form');
@@ -77,5 +69,25 @@ class User extends MY_Controller {
     }
     $this->user->add_data($form_data);
     redirect('/admin/user/');
+  }
+
+  public function edit(){
+    $this->load->model('User_model','user');
+    $form_data = array(
+      'fullname' => $this->input->post('fullname')
+    );
+
+    if($this->input->post('is_admin')!=NULL){
+      $form_data['is_admin'] = 1;
+    }else{
+      $form_data['is_admin'] = 0;
+    }
+    $this->user->add_data($form_data);
+    redirect('/admin/user/');
+  }
+
+  public function delete($id){
+    $this->load->model('User_model', 'user');
+    $this->user->delete_data($id);
   }
 }

@@ -16,12 +16,19 @@
       "autoWidth": false
     });
   });
+
+  function doDelete(id){
+    var r = confirm("Are you sure want to delete this user?");
+    if (r == true) {
+        window.location = "<?php echo base_url()."/admin/user/delete/";?>"+id;
+    }
+  }
 </script>
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">User Data Table</h3>
+        <a class="btn btn-success" href="<?php echo base_url()."/admin/user/form";?>"><i class="fa fa-plus"></i></a>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -34,6 +41,7 @@
             <th>Email</th>
             <th>Is Administrator</th>
             <th>Modified At</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -45,6 +53,8 @@
                 <th><?php echo $value["email"];?></th>
                 <th><?php echo $value["is_admin"];?></th>
                 <th><?php echo $value["modified_at"];?></th>
+                <th><a class="btn btn-warning" href="<?php echo base_url()."/admin/user/form/".$value["id"];?>"><i class="fa fa-edit"></i></a>
+                  <a class="btn btn-danger" onclick="doDelete(<?php echo $value["id"];?>);"><i class="fa fa-close"></i></a></th>
               </tr>
             <?php }?>
           </tbody>
