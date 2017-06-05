@@ -1,4 +1,5 @@
-<div class="col-md-12">
+<?php $this->load->view('side_search_control')?>
+<div class="col-md-8">
   <div class="box box-info">
     <div class="box-header with-border">
       <h3 class="box-title">Make a Trip</h3>
@@ -8,44 +9,6 @@
       </div>
     </div>
     <div class="box-body">
-      <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-              <label>Location</label>
-              <select class="form-control">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <label>Budget</label>
-              <select class="form-control">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <label>Days</label>
-              <select class="form-control">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-        </div>
-      </div>
     </div>
     <div class="box-footer clearfix">
       <button type="button" class="btn btn-sm btn-info btn-flat">go</button>
