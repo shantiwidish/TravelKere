@@ -1,5 +1,5 @@
 <?php get_message_error();?>
-<form action="<?php echo base_url()."/member/add"?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo base_url()."/member/edit"?>" method="post" enctype="multipart/form-data">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group has-feedback">
@@ -16,7 +16,7 @@
       </div>
       <div class="form-group has-feedback">
         <label>Phone Number</label>
-        <input name="phone" type="phone" class="form-control" value="<?php echo $phone_number?>" required >
+        <input name="phone_number" type="phone_number" class="form-control" value="<?php echo $phone_number?>" required >
       </div>
     </div>
     <div class="col-md-6">

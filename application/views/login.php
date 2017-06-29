@@ -32,7 +32,7 @@
     </div> -->
     <!-- /.social-auth-links -->
     <center>
-    <p>Not registered yet? <a href="<?php echo base_url()."admin/user/form_register"?>">Sign Up</a></p>
+    <p>Not registered yet? <a href="<?php echo base_url()."member/form_register"?>">Sign Up</a></p>
     <a href="#">Forgot Password</a><br>
   </center>
 

@@ -56,15 +56,15 @@ class User extends MY_Controller {
       set_message_error("Password not match!");
       redirect('/admin/user/form');
     }
-    if($this->input->post('is_admin')!=NULL){
-      $form_data['is_admin'] = 1;
+    if($this->input->post('isActive')!=NULL){
+      $form_data['isActive'] = 1;
     }else{
-      $form_data['is_admin'] = 0;
+      $form_data['isActive'] = 0;
     }
-    $filename =  $this->do_upload();
-    if($filename){
-      $form_data['image'] = $filename;
-    }
+    // $filename =  $this->do_upload();
+    // if($filename){
+    //   $form_data['image'] = $filename;
+    // }
     $this->user->add_data($form_data);
     redirect('/admin/user/');
   }
@@ -75,11 +75,11 @@ class User extends MY_Controller {
       'fullname' => $this->input->post('fullname')
     );
 
-    if($this->input->post('is_admin')!=NULL){
-      $form_data['is_admin'] = 1;
-    }else{
-      $form_data['is_admin'] = 0;
-    }
+    // if($this->input->post('is_admin')!=NULL){
+    //   $form_data['is_admin'] = 1;
+    // }else{
+    //   $form_data['is_admin'] = 0;
+    // }
 
     $filename =  $this->do_upload();
     if($filename!=NULL){

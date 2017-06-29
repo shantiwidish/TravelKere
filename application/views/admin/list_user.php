@@ -40,7 +40,7 @@
             <th>Username</th>
             <th>Fullname</th>
             <th>Email</th>
-            <th>Is Administrator</th>
+            <!-- <th>Is Administrator</th> -->
             <th>Modified At</th>
             <th>Action</th>
           </tr>
@@ -52,7 +52,7 @@
                 <th><?php echo $value["username"];?></th>
                 <th><?php echo $value["fullname"];?></th>
                 <th><?php echo $value["email"];?></th>
-                <th><?php echo $value["is_admin"];?></th>
+                <!-- <th><?php echo $value["is_admin"];?></th> -->
                 <th><?php echo $value["modified_at"];?></th>
                 <th><a class="btn btn-warning" href="<?php echo base_url()."/admin/user/form/".$value["id"];?>"><i class="fa fa-edit"></i></a>
                   <a class="btn btn-danger" onclick="doDelete(<?php echo $value["id"];?>);"><i class="fa fa-close"></i></a></th>

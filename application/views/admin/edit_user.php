@@ -29,19 +29,19 @@
       </div>
       <!-- /.col -->
       <div class="col-md-6">
-        <div class="form-group has-feedback">
+        <!-- <div class="form-group has-feedback">
           <input name="image" type="file" class="form-control" placeholder="Profile Picture">
-        </div>
+        </div> -->
 
         <div class="form-group has-feedback">
             <label>
-              <input name="is_admin" type="checkbox" <?php if($form_data['is_admin']==1)"checked";?>> Is Administrator?</a>
+              <input name="isActive" type="checkbox" <?php if($form_data['isActive']==1)"checked";?>> Is Active?</a>
             </label>
         </div>
         <div class="form-group has-feedback">
           <div class="checkbox icheck">
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Update</button>
             </div>
           </div>
         </div>

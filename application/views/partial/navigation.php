@@ -14,6 +14,13 @@
           <li class="active"><a href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a></li>
           <li><a href="<?php echo base_url()."trip/make_trip"; ?>">Make Trip</a></li>
           <li><a href="#">My Trip</a></li>
+          <?php
+            if($is_admin){
+          ?>
+            <li><a href="<?php echo base_url()."admin/user/"; ?>">Admin Area</a></li>
+          <?php              
+            }
+          ?>
           <!-- <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">

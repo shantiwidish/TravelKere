@@ -26,7 +26,7 @@
           </div>
           <div class="form-group has-feedback">
             <label>Phone Number</label>
-            <input name="phone" type="phone" class="form-control" placeholder="Phone Number" required >
+            <input name="phone_number" type="phone_number" class="form-control" placeholder="Phone Number" required >
           </div>
           <div class="form-group has-feedback">
             <label>Address</label>

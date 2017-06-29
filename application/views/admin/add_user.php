@@ -21,9 +21,9 @@
         <div class="form-group has-feedback">
           <input name="email" type="email" class="form-control" placeholder="Email" required >
         </div>
-        <div class="form-group has-feedback">
+        <!-- <div class="form-group has-feedback">
           <input name="image" type="file" class="form-control" placeholder="Profile Picture">
-        </div>
+        </div> -->
       </div>
       <!-- /.col -->
       <div class="col-md-6">
@@ -33,15 +33,15 @@
         <div class="form-group has-feedback">
           <input name="re_password" type="password" class="form-control" placeholder="Retype password" required>
         </div>
-        <div class="form-group has-feedback">
+        <!-- <div class="form-group has-feedback">
             <label>
               <input name="is_admin" type="checkbox"> Is Administrator?</a>
             </label>
-        </div>
+        </div> -->
         <div class="form-group has-feedback">
           <div class="checkbox icheck">
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Add</button>
             </div>
           </div>
         </div>

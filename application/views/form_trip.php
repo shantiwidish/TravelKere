@@ -1,4 +1,5 @@
-<?php $this->load->view('side_search_control')?>
+
+<?php $this->load->view('side_search_control', $side_search)?>
 <div class="col-md-8">
   <div class="box box-info">
     <div class="box-header with-border">
