@@ -23,6 +23,15 @@ class MY_Controller extends CI_Controller
 		return $data;
 	}
 
+	public function checkPermission(){
+		if(!$this->isLogin()){
+		// 		redirect('/');
+		// }
+		// else {
+			redirect('/member/form_login');
+		}
+	}
+
 	public function isLogin(){
 		// var_dump($_SESSION);die();
 		$username = $this->session->userdata('username');
@@ -37,6 +46,27 @@ class MY_Controller extends CI_Controller
 		$this->load->view('partial/admin/header', $data);
 		$this->load->view('partial/admin/body', $content);
 		$this->load->view('partial/admin/footer.php');
+	}
+
+	public function do_upload()
+	{
+					$config['upload_path']          = './assets/images/upload/';
+					$config['allowed_types']        = 'gif|jpg|png';
+					// $config['max_size']             = 100;
+					// $config['max_width']            = 1024;
+					// $config['max_height']           = 768;
+
+					$this->load->library('upload', $config);
+					if ( ! $this->upload->do_upload('image'))
+					{
+									$error = array('error' => $this->upload->display_errors());
+					}
+					else
+					{
+									$data = array('upload_data' => $this->upload->data());
+									// var_dump($data['upload_data']['file_name']);die();
+									return $data['upload_data']['file_name'];
+					}
 	}
 
 }

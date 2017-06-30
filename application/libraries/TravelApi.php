@@ -25,8 +25,8 @@ class TravelApi{
       return $this->_ci->curl->simple_get($this->_base_url.$path);
   }
 
-  function get_search_destinations($seach_key, $path='/api/destinations/search/'){
-      return $this->_ci->curl->simple_get($this->_base_url.$path.urlencode($search_key));
+  function get_search_destinations($search_key, $path='/api/destinations/search/'){
+      return $this->_ci->curl->simple_get($this->_base_url.$path.$search_key);
   }
 
   function get_destination_by_id($id, $path='/api/destinations/'){

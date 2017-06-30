@@ -1,5 +1,6 @@
 <?php get_message_error();?>
 <form action="<?php echo base_url()."/member/edit"?>" method="post" enctype="multipart/form-data">
+  <input name="id" type="hidden" class="form-control" value="<?php echo $user_id?>" disabled>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group has-feedback">

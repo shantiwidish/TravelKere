@@ -18,13 +18,22 @@ class Welcome extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		if($this->isLogin()){
-				redirect('/member/');
-		}
-		else {
-			redirect('/member/form_login');
-		}
-	}
+	 public function index()
+	 {
+		 $this->checkPermission();
+		 $this->load->model('Trip_model','trip');
+		 $this->load->model('Trip_group_model','group');
+		 $this->data['page_subtitle'] = "Dashboard";
+		 $this->load->view('partial/header', $this->data);
+		 $trip_list = $this->trip->get_all(TRUE);
+		 $trip_group_list = array();
+		 foreach ($trip_list as $key => $value) {
+				$trip_group_list[$value["id"]] = $this->group->get_groups_by_trip($value["id"], TRUE);
+		 }
+
+		 $content = array("content"=>"dashboard","session_data"=>$this->get_session_data());
+		 $this->load->view('partial/body', $content);
+		 $this->load->view('partial/footer.php');
+	 }
+
 }

@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'flash_message', 'form');
+$autoload['helper'] = array('url', 'flash_message', 'form', 'indonesian_date');
 
 /*
 | -------------------------------------------------------------------

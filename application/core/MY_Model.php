@@ -39,6 +39,14 @@ class MY_Model extends CI_Model {
     return $query->result();
   }
 
+  public function get_by_multi_id($data_id, $asArray=FALSE){
+    $this->db->where_in('id', $data_id);
+    $query = $this->db->get($this->table);
+    if($asArray)
+      return $query->result_array();
+    return $query->result();
+  }
+
   public function get_by_column($columns, $data, $asArray=FALSE){
     $where_sql = "";
     foreach ($columns as $key => $value) {
@@ -52,4 +60,19 @@ class MY_Model extends CI_Model {
       return $query->result_array();
     return $query->result();
   }
+
+  public function get_by_keys($columns, $data, $asArray=FALSE){
+    $where_sql = "";
+    foreach ($columns as $key => $value) {
+      if($key > 0)
+          $where_sql .= " AND ";
+      $where_sql .= $value." = '".$data[$value]."'";
+    }
+    $this->db->where($where_sql);
+    $query = $this->db->get($this->table);
+    if($asArray)
+      return $query->result_array();
+    return $query->result();
+  }
+
 }

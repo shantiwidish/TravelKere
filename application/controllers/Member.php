@@ -14,19 +14,11 @@ class Member extends MY_Controller {
 
   public function index()
   {
-    if($this->isLogin()){
-      $this->data['page_subtitle'] = "Dashboard";
-      $this->load->view('partial/header', $this->data);
-      $content = array("content"=>"dashboard","session_data"=>$this->get_session_data());
-      $this->load->view('partial/body', $content);
-      $this->load->view('partial/footer.php');
-    }
-    else {
-      redirect('/member/form_login');
-    }
+    $this->checkPermission();
   }
 
   public function edit_profile($id){
+    $this->checkPermission();
     $this->load->model('User_model','user');
     $result = $this->user->get_traveller_by_id($id, TRUE);
     $form_data = $result[0];
@@ -144,27 +136,6 @@ class Member extends MY_Controller {
     );
     $this->user->update_user($id, $data_user);
     redirect('/');
-  }
-
-  public function do_upload()
-  {
-          $config['upload_path']          = './assets/images/upload/';
-          $config['allowed_types']        = 'gif|jpg|png';
-          // $config['max_size']             = 100;
-          // $config['max_width']            = 1024;
-          // $config['max_height']           = 768;
-
-          $this->load->library('upload', $config);
-          if ( ! $this->upload->do_upload('image'))
-          {
-                  $error = array('error' => $this->upload->display_errors());
-          }
-          else
-          {
-                  $data = array('upload_data' => $this->upload->data());
-                  // var_dump($data['upload_data']['file_name']);die();
-                  return $data['upload_data']['file_name'];
-          }
   }
 
 }
