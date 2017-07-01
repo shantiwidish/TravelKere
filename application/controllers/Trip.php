@@ -128,4 +128,29 @@ class Trip extends MY_Controller {
     redirect('/');
   }
 
+  function cancelTrip(){
+    $this->load->model('Trip_group_model','trip_group');
+    $this->load->model('Trip_model','trip');
+    $result = $this->trip_group->get_trip_group($this->input->post('trip_id'),$this->input->post('traveller_id'),TRUE);
+    // var_dump($result[0]["role"]);die();
+    if($result[0]["role"]==1){
+      $data = array(
+        "isActive"=>0
+      );
+      $this->trip->update_data($result[0]["trip_id"],$data);
+    }else{
+      $this->trip_group->cancel_trip($this->input->post('trip_id'),$this->input->post('traveller_id'));
+    }
+    $data_api = array(
+      'destination_id' => $this->input->post('destination_id'),
+      'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['start_at'])->format('Y-m-d'),
+      'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['end_at'])->format('Y-m-d'),
+      'quantity' => -1
+    );
+    $params = array('url'=>$this->config->item("travel_api"));
+    $this->load->library('api', $params);
+    $this->api->booked_trip($data_api);
+    redirect('/');
+  }
+
 }

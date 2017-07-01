@@ -6,13 +6,6 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header)
-    <section class="content-header">
-      <h1>
-        <?php echo $page_title;?>
-        <small><?php echo $page_subtitle;?></small>
-      </h1>
-    </section> -->
 
     <!-- Main content -->
     <section class="content">
@@ -28,8 +21,8 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
+      <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2017</strong> All rights
     reserved.
   </footer>

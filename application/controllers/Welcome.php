@@ -20,6 +20,9 @@ class Welcome extends MY_Controller {
 	 */
 	 public function index()
 	 {
+		 error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
 		 $this->checkPermission();
 		 $this->load->model('Trip_model','trip');
 		 $this->load->model('Trip_group_model','group');

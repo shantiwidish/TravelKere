@@ -11,7 +11,12 @@
       <div class="box-header with-border">
         <div class="user-block">
           <img class="img-circle" src="<?php echo base_url()."assets/images/upload/".$value["image"]?>" alt="User Image">
-          <span class="username"><a href="#"><?php echo $value["title"]?></a></span>
+          <?php if(strlen($value["title"])>30){
+            $title = substr($value["title"],0,25)."...";
+          }else{
+            $title = $value["title"];
+          }?>
+          <span class="username"><a href="#"><?php echo $title;?></a></span>
           <span class="description"><?php echo $value["fullname"]?></span>
         </div>
         <!-- /.user-block -->
@@ -31,16 +36,21 @@
         </div>
       </div>
       <!-- /.box-header -->
-      <div class="box-body" id="body<?php echo $index;?>" style="display: none;">
+      <div class="box-body" id="detailBody<?php echo $index;?>" style="display: none;">
+        <h4><?php echo $value["title"];?></h4>
         <?php if($value["cover_image"] != "" && $value["cover_image"] != NULL){?>
           <img class="img-responsive pad" src="<?php echo base_url()."assets/images/upload/".$value["cover_image"]?>" alt="Photo">
         <?php } ?>
         <p><?php echo $value["description"];?></p>
         <span class="pull-right text-muted"><?php echo $data_trip["trip_group"][$value["id"]]["count_member"]?> member join this trip</span>
           <ul class="users-list clearfix">
-            <?php foreach ($data_trip["trip_group"][$value["id"]]["member"] as $key => $trip_group) {?>
+            <?php
+            $ids_member = array();
+            foreach ($data_trip["trip_group"][$value["id"]]["member"] as $key => $trip_group) {
+              array_push($ids_member, $trip_group["traveller_id"]);
+              ?>
               <li>
-                <img src="<?php echo base_url()."assets/images/upload/".$trip_group["image"]?>" alt="User Image">
+                <img class="img-circle" src="<?php echo base_url()."assets/images/upload/".$trip_group["image"]?>" alt="User Image">
                 <a class="users-list-name" href="#"><?php echo substr($trip_group["fullname"],0,10);?></a>
                 <span class="users-list-date">Today</span>
               </li>
@@ -48,19 +58,29 @@
           </ul>
           <!-- /.users-list -->
           <!-- <div class="row"> -->
-          <?php if($session_data["user_id"]!= $value["traveller_id"]){?>
+          <?php if(!in_array($session_data["user_id"],$ids_member)){?>
             <form action="<?php echo base_url()."/trip/joinTrip"?>" method="post">
               <label>Lets journey together!</label>
               <input name="traveller_id" type="hidden" class="form-control" value="<?php echo $session_data["user_id"]?>" />
               <input name="trip_id" type="hidden" class="form-control" value="<?php echo $value["id"]?>" />
+              <input name="destination_id" type="hidden" class="form-control" value="<?php echo $value["destination_id"]?>" />
               <div class="form-group has-feedback">
-                <input name="participate" type="text" class="form-control" placeholder="Number of party" />
+                <input name="participate" type="text" class="form-control" placeholder="Number of party" required/>
               </div>
               <div class="form-group has-feedback">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Join</button>
               </div>
             </form>
-          <?}?>
+          <?php }else{?>
+            <form action="<?php echo base_url()."/trip/cancelTrip"?>" method="post">
+              <input name="traveller_id" type="hidden" class="form-control" value="<?php echo $session_data["user_id"]?>" />
+              <input name="trip_id" type="hidden" class="form-control" value="<?php echo $value["id"]?>" />
+              <input name="destination_id" type="hidden" class="form-control" value="<?php echo $value["destination_id"]?>" />
+              <div class="form-group has-feedback">
+                <button type="submit" class="btn btn-danger btn-block btn-flat">Cancel Trip</button>
+              </div>
+            </form>
+          <?php }?>
           <!-- </div> -->
         </div>
       <!-- /.box-body -->
@@ -80,9 +100,12 @@
 </div>
 <script>
 function showDetail(index){
-  id="#body"+index;
+  id="#detailBody"+index;
   btn = "#btnToggle"+index;
   if($(id).is( ":hidden" )){
+    $("[id^='detailBody']").hide();
+    $("[id^='btnToggle']").html("Expand");
+    $("[id^='btnToggle']").prop('class', "btn btn-primary btn-block btn-flat");
     $( id ).slideDown( "slow" );
     $(btn).html("Hide");
     $(btn).prop('class', "btn btn-warning btn-block btn-flat");
