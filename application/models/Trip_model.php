@@ -3,7 +3,7 @@
 class Trip_model extends MY_Model {
 
   private $table = "trips";
-  private $joinTable = array("travellers","trip_groups");
+  private $joinTable = array("travellers","trip_groups","users");
 
   function __construct()
   {
@@ -22,6 +22,18 @@ class Trip_model extends MY_Model {
     $this->db->trans_start();
     $this->db->insert($this->joinTable[1], $data);
     $this->db->trans_complete();
+  }
+
+  function get_all_trip($asArray=FALSE){
+    $this->db->select('trips.*, travellers.image, users.id as traveller_id, users.fullname');
+    $this->db->where("role = 1 AND trips.isActive = 1 AND trips.isPublic = 1");
+    $this->db->join($this->joinTable[1], $this->table.'.id = '.$this->joinTable[1].".trip_id", 'left');
+    $this->db->join($this->joinTable[0], $this->joinTable[0].'.user_id = '.$this->joinTable[1].".traveller_id", 'left');
+    $this->db->join($this->joinTable[2], $this->joinTable[1].'.traveller_id = '.$this->joinTable[2].".id", 'left');
+    $query = $this->db->get($this->table);
+    if($asArray)
+      return $query->result_array();
+    return $query->result();
   }
 }
 ?>

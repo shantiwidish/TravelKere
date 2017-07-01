@@ -102,6 +102,8 @@ class Member extends MY_Controller {
     $filename =  $this->do_upload();
     if($filename){
       $data_additional['image'] = $filename;
+    }else{
+      $data_additional['image'] = "default_user.jpg";
     }
     $form_data = array($data_user, $data_additional);
     $this->user->add_user($form_data,0);
@@ -119,6 +121,8 @@ class Member extends MY_Controller {
     $filename =  $this->do_upload();
     if($filename!=NULL){
       $form_data['image'] = $filename;
+    }else{
+      $data_additional['image'] = "default_user.jpg";
     }
     $this->user->update_user($this->input->post('id'), $form_data);
     redirect('/admin/user/');

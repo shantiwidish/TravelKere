@@ -1,97 +1,95 @@
 <?php $this->load->view('search_control')?>
 <h2 class="page-header">Must Join!</h2>
 <div class="row">
-  <?php for($i=0;$i<4;$i++){
-    ?>
+  <?php
+  $index = 0;
+  foreach ($data_trip["trip_list"] as $key => $value) {
+  ?>
   <div class="col-md-3">
     <!-- Box Comment -->
     <div class="box box-widget">
       <div class="box-header with-border">
         <div class="user-block">
-          <img class="img-circle" src="<?php echo base_url()."assets/admin/dist/img/user1-128x128.jpg"?>" alt="User Image">
-          <span class="username"><a href="#">Trip to Untung Jawa</a></span>
-          <span class="description">Jonathan Burke Jr.</span>
+          <img class="img-circle" src="<?php echo base_url()."assets/images/upload/".$value["image"]?>" alt="User Image">
+          <span class="username"><a href="#"><?php echo $value["title"]?></a></span>
+          <span class="description"><?php echo $value["fullname"]?></span>
         </div>
         <!-- /.user-block -->
-        <div class="box-tools">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-        </div>
         <!-- /.box-tools -->
+        <div>
+          <ul class="nav nav-stacked">
+            <li><a href="#">Price <span class="pull-right badge bg-blue">Rp.<?php echo number_format($value["budget"])?></span></a></li>
+            <li><a href="#">Quota <span class="pull-right badge bg-aqua"><?php echo $value["quota"]?></span></a></li>
+            <li><a href="#">Availability <span class="pull-right badge bg-green"><?php echo $value["quota"] - $data_trip["trip_group"][$value["id"]]["participate"]?></span></a></li>
+            <?php
+            $date1 = new DateTime($value["start_at"]);
+            $date2 = new DateTime($value["end_at"]);
+            $diff = $date2->diff($date1)->format("%a");
+             ?>
+            <li><a href="#">Duration <span class="pull-right badge bg-red"><?php echo $diff+1;?> days</span></a></li>
+          </ul>
+        </div>
       </div>
-      <div class="box-footer no-padding">
-              <ul class="nav nav-stacked">
-                <li><a href="#">Price <span class="pull-right badge bg-blue">Rp.200,000</span></a></li>
-                <li><a href="#">Quota <span class="pull-right badge bg-aqua">12</span></a></li>
-                <li><a href="#">Availability <span class="pull-right badge bg-green">3</span></a></li>
-                <li><a href="#">Duration <span class="pull-right badge bg-red">2D1N</span></a></li>
-              </ul>
-            </div>
       <!-- /.box-header -->
-      <div class="box-body">
-        <img class="img-responsive pad" src="<?php echo base_url()."assets/admin/dist/img/photo2.png"?>" alt="Photo">
-
-        <p>I took this photo this morning. What do you guys think?</p>
-        <span class="pull-right text-muted">9 of 12 member join this trip</span>
-      </div>
-      <div class="box-body no-padding">
+      <div class="box-body" id="body<?php echo $index;?>" style="display: none;">
+        <?php if($value["cover_image"] != "" && $value["cover_image"] != NULL){?>
+          <img class="img-responsive pad" src="<?php echo base_url()."assets/images/upload/".$value["cover_image"]?>" alt="Photo">
+        <?php } ?>
+        <p><?php echo $value["description"];?></p>
+        <span class="pull-right text-muted"><?php echo $data_trip["trip_group"][$value["id"]]["count_member"]?> member join this trip</span>
           <ul class="users-list clearfix">
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user1-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Alexander Pierce</a>
-              <span class="users-list-date">Today</span>
-            </li>
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user8-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Norman</a>
-              <span class="users-list-date">Yesterday</span>
-            </li>
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user7-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Jane</a>
-              <span class="users-list-date">12 Jan</span>
-            </li>
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user6-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">John</a>
-              <span class="users-list-date">12 Jan</span>
-            </li>
-            <!-- <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user2-160x160.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Alexander</a>
-              <span class="users-list-date">13 Jan</span>
-            </li>
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user5-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Sarah</a>
-              <span class="users-list-date">14 Jan</span>
-            </li>
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user4-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Nora</a>
-              <span class="users-list-date">15 Jan</span>
-            </li>
-            <li>
-              <img src="<?php echo base_url()."assets/admin/dist/img/user3-128x128.jpg"?>" alt="User Image">
-              <a class="users-list-name" href="#">Nadia</a>
-              <span class="users-list-date">15 Jan</span>
-            </li> -->
+            <?php foreach ($data_trip["trip_group"][$value["id"]]["member"] as $key => $trip_group) {?>
+              <li>
+                <img src="<?php echo base_url()."assets/images/upload/".$trip_group["image"]?>" alt="User Image">
+                <a class="users-list-name" href="#"><?php echo substr($trip_group["fullname"],0,10);?></a>
+                <span class="users-list-date">Today</span>
+              </li>
+          <?php  }?>
           </ul>
           <!-- /.users-list -->
+          <!-- <div class="row"> -->
+          <?php if($session_data["user_id"]!= $value["traveller_id"]){?>
+            <form action="<?php echo base_url()."/trip/joinTrip"?>" method="post">
+              <label>Lets journey together!</label>
+              <input name="traveller_id" type="hidden" class="form-control" value="<?php echo $session_data["user_id"]?>" />
+              <input name="trip_id" type="hidden" class="form-control" value="<?php echo $value["id"]?>" />
+              <div class="form-group has-feedback">
+                <input name="participate" type="text" class="form-control" placeholder="Number of party" />
+              </div>
+              <div class="form-group has-feedback">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Join</button>
+              </div>
+            </form>
+          <?}?>
+          <!-- </div> -->
         </div>
       <!-- /.box-body -->
       <!-- /.box-footer -->
       <div class="box-footer">
-        <form action="#" method="post">
-          <div class="form-group has-feedback">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Join</button>
-          </div>
-        </form>
+        <div class="form-group has-feedback">
+          <button type="button" class="btn btn-primary btn-block btn-flat" id="btnToggle<?php echo $index;?>" onclick="showDetail(<?php echo $index;?>)">Expand</button>
+        </div>
       </div>
       <!-- /.box-footer -->
     </div>
     <!-- /.box -->
   </div>
   <?php
+  $index++;
 }?>
 </div>
+<script>
+function showDetail(index){
+  id="#body"+index;
+  btn = "#btnToggle"+index;
+  if($(id).is( ":hidden" )){
+    $( id ).slideDown( "slow" );
+    $(btn).html("Hide");
+    $(btn).prop('class', "btn btn-warning btn-block btn-flat");
+  }else{
+    $( id ).hide();
+    $(btn).html("Expand");
+    $(btn).prop('class', "btn btn-primary btn-block btn-flat");
+  }
+}
+</script>

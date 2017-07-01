@@ -25,13 +25,23 @@ class Welcome extends MY_Controller {
 		 $this->load->model('Trip_group_model','group');
 		 $this->data['page_subtitle'] = "Dashboard";
 		 $this->load->view('partial/header', $this->data);
-		 $trip_list = $this->trip->get_all(TRUE);
+		 $trip_list = $this->trip->get_all_trip(TRUE);
 		 $trip_group_list = array();
 		 foreach ($trip_list as $key => $value) {
-				$trip_group_list[$value["id"]] = $this->group->get_groups_by_trip($value["id"], TRUE);
+				$trip_group_list[$value["id"]]["member"] = $this->group->get_groups_by_trip($value["id"], TRUE);
+				$participate = 0;
+				$member = 0;
+				foreach ($trip_group_list[$value["id"]]["member"] as $key => $trip_group) {
+					$participate += $trip_group["numberOfParty"];
+					$member +=1;
+				}
+				$trip_group_list[$value["id"]]["participate"] = $participate;
+				$trip_group_list[$value["id"]]["count_member"] = $member;
 		 }
-
-		 $content = array("content"=>"dashboard","session_data"=>$this->get_session_data());
+		//  var_dump($trip_group_list[3]);die();
+		 $data_trip = array("trip_list"=>$trip_list, "trip_group"=>$trip_group_list);
+		 $content = array("content"=>"dashboard","session_data"=>$this->get_session_data(),
+	 							"data_trip"=>$data_trip);
 		 $this->load->view('partial/body', $content);
 		 $this->load->view('partial/footer.php');
 	 }

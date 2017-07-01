@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="box-body">
-      <form action="<?php echo base_url()."/trip/create"?>" method="post">
+      <form action="<?php echo base_url()."/trip/create"?>" method="post"  enctype="multipart/form-data">
         <input name="traveller_id" type="hidden" class="form-control" value="<?php echo $session_data["user_id"]?>" />
         <div class="form-group has-feedback">
           <label>Destination</label>

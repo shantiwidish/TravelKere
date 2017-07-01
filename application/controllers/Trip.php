@@ -20,8 +20,8 @@ class Trip extends MY_Controller {
   public function make_trip(){
     $this->checkPermission();
     $params = array('url'=>$this->config->item("travel_api"));
-    $this->load->library('travelapi', $params);
-    $result = json_decode($this->travelapi->get_locations());
+    $this->load->library('api', $params);
+    $result = json_decode($this->api->get_locations());
     $province = array();
     $province_city = array();
     $city_area = array();
@@ -52,8 +52,8 @@ class Trip extends MY_Controller {
 
   function search_destination($area){
     $params = array('url'=>$this->config->item("travel_api"));
-    $this->load->library('travelapi', $params);
-    $content = array("destinations"=>json_decode($this->travelapi->get_search_destinations($area)));
+    $this->load->library('api', $params);
+    $content = array("destinations"=>json_decode($this->api->get_search_destinations($area)));
     echo $this->load->view('search_destination_form',$content, TRUE);
   }
 
@@ -95,8 +95,8 @@ class Trip extends MY_Controller {
           'quantity' => $this->input->post('participate')
         );
         $params = array('url'=>$this->config->item("travel_api"));
-        $this->load->library('travelapi', $params);
-        $this->travelapi->booked_trip($data_api);
+        $this->load->library('api', $params);
+        $this->api->booked_trip($data_api);
       }
 
       redirect('/');
@@ -112,8 +112,7 @@ class Trip extends MY_Controller {
       'created_at' => date('Y-m-d H:i:s'),
       'modified_at' => date('Y-m-d H:i:s')
     );
-    $form_data = array($data_trip, $data_group);
-    $result = $this->trip->add_trip_group($form_data,0);
+    $result = $this->trip->add_trip_group($data_group);
     if($result){
       $data_api = array(
         'destination_id' => $this->input->post('destination_id'),
@@ -122,8 +121,8 @@ class Trip extends MY_Controller {
         'quantity' => $this->input->post('participate')
       );
       $params = array('url'=>$this->config->item("travel_api"));
-      $this->load->library('travelapi', $params);
-      $this->travelapi->booked_trip($data_api);
+      $this->load->library('api', $params);
+      $this->api->booked_trip($data_api);
     }
 
     redirect('/');

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class TravelApi{
+class Api{
 
   protected $_ci;                 // CodeIgniter instance
   protected $_base_url;
