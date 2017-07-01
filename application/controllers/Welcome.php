@@ -20,9 +20,6 @@ class Welcome extends MY_Controller {
 	 */
 	 public function index()
 	 {
-		 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
 		 $this->checkPermission();
 		 $this->load->model('Trip_model','trip');
 		 $this->load->model('Trip_group_model','group');
@@ -43,8 +40,13 @@ ini_set('display_startup_errors', TRUE);
 		 }
 		//  var_dump($trip_group_list[3]);die();
 		 $data_trip = array("trip_list"=>$trip_list, "trip_group"=>$trip_group_list);
+
+		 $params = array('url'=>$this->config->item("travel_api"));
+		 $this->load->library('api', $params);
+		 $location_result = json_decode($this->api->get_locations());
+
 		 $content = array("content"=>"dashboard","session_data"=>$this->get_session_data(),
-	 							"data_trip"=>$data_trip);
+	 							"data_trip"=>$data_trip, "locations"=>$location_result);
 		 $this->load->view('partial/body', $content);
 		 $this->load->view('partial/footer.php');
 	 }

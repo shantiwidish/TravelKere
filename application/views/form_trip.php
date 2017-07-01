@@ -15,8 +15,9 @@
         <div class="form-group has-feedback">
           <label>Destination</label>
           <div class="row">
-            <div class="col-sm-10" id="search_result">
-              <p>Please search destination</p>
+            <div class="col-sm-10">
+              <select class="form-control" id="destination_id" name="destination_id" required>
+              </select>
             </div>
             <div class="col-sm-2">
               <!-- <button type="buton" class="btn btn-sm btn-info btn-flat">see detail</button> -->

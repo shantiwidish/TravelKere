@@ -11,14 +11,15 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
         <ul class="nav navbar-nav">
+          <!-- <li class="active"><a href="">Home <span class="sr-only">(current)</span></a></li> -->
           <li class="active"><a href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a></li>
           <li><a href="<?php echo base_url()."trip/make_trip"; ?>">Make Trip</a></li>
-          <li><a href="#">My Trip</a></li>
+          <li><a href="<?php echo base_url()."member/trip/".$user_id; ?>">My Trip</a></li>
           <?php
             if($is_admin){
           ?>
             <li><a href="<?php echo base_url()."admin/user/"; ?>">Admin Area</a></li>
-          <?php              
+          <?php
             }
           ?>
           <!-- <li class="dropdown">

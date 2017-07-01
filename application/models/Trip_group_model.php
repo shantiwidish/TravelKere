@@ -21,6 +21,15 @@ class Trip_group_model extends MY_Model {
     return $query->result();
   }
 
+  function get_trip_id_by_traveller($traveller_id, $asArray=FALSE){
+    $this->db->select('trip_id');
+    $this->db->where($this->table.".traveller_id = ".$traveller_id);
+    $query = $this->db->get($this->table);
+    if($asArray)
+      return $query->result_array();
+    return $query->result();
+  }
+
   function get_trip_group($trip_id, $traveller_id, $asArray=FALSE){
     $this->db->where("trip_id = ".$trip_id." AND traveller_id=".$traveller_id);
     $this->db->join($this->joinTable[1], $this->table.'.trip_id = '.$this->joinTable[1].".id", 'left');

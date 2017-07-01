@@ -56,7 +56,7 @@ function search(keyword){
   method: "GET",
   url: get_url
   }).done(function(data) {
-    $("#search_result").html(data);
+    $("#destination_id").html(data);
   });
 }
 

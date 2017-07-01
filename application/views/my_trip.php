@@ -1,5 +1,3 @@
-<?php $this->load->view('search_control')?>
-<h2 class="page-header">Must Join!</h2>
 <div class="row">
   <?php
   $index = 0;
