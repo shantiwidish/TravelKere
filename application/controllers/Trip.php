@@ -87,17 +87,22 @@ class Trip extends MY_Controller {
       );
       $form_data = array($data_trip, $data_group);
       $result = $this->trip->add_trip($form_data,0);
-      if($result){
+      $destination_id = $this->input->post('destination_id');
+      // if($result){
         $data_api = array(
-          'destination_id' => $this->input->post('destination_id'),
+          'destination_id' => $destination_id,
           'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('start_at'))->format('Y-m-d'),
           'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('end_at'))->format('Y-m-d'),
           'quantity' => $this->input->post('participate')
         );
         $params = array('url'=>$this->config->item("travel_api"));
+        if($destination_id>=6 && $destination_id<=20){
+            $params = array('url'=>$this->config->item("travel_api_2"));
+        }
+
         $this->load->library('api', $params);
         $this->api->booked_trip($data_api);
-      }
+      // }
 
       redirect('/');
   }
@@ -113,17 +118,22 @@ class Trip extends MY_Controller {
       'modified_at' => date('Y-m-d H:i:s')
     );
     $result = $this->trip->add_trip_group($data_group);
-    if($result){
+    $destination_id = $this->input->post('destination_id');
+    // if($result){
       $data_api = array(
-        'destination_id' => $this->input->post('destination_id'),
+        'destination_id' => $destination_id,
         'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('start_at'))->format('Y-m-d'),
         'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('end_at'))->format('Y-m-d'),
         'quantity' => $this->input->post('participate')
       );
       $params = array('url'=>$this->config->item("travel_api"));
+      if($destination_id>=6 && $destination_id<=20){
+          $params = array('url'=>$this->config->item("travel_api_2"));
+      }
+
       $this->load->library('api', $params);
       $this->api->booked_trip($data_api);
-    }
+    // }
 
     redirect('/');
   }
@@ -141,16 +151,69 @@ class Trip extends MY_Controller {
     }else{
       $this->trip_group->cancel_trip($this->input->post('trip_id'),$this->input->post('traveller_id'));
     }
-    $data_api = array(
-      'destination_id' => $this->input->post('destination_id'),
+    $quantity = 0;
+    if($result[0]["numberOfParty"]>0){
+      $quantity = (int)$result[0]["numberOfParty"];
+    }
+    $destination_id = $this->input->post('destination_id');
+    // if($result){
+      $data_api = array(
+      'destination_id' => $destination_id,
       'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['start_at'])->format('Y-m-d'),
       'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['end_at'])->format('Y-m-d'),
-      'quantity' => -1
+      'quantity' => $quantity * -1
     );
     $params = array('url'=>$this->config->item("travel_api"));
+    if($destination_id>=6 && $destination_id<=20){
+        $params = array('url'=>$this->config->item("travel_api_2"));
+    }
     $this->load->library('api', $params);
     $this->api->booked_trip($data_api);
     redirect('/');
+  }
+
+  function searchTrip(){
+    $this->checkPermission();
+    $this->load->model('Trip_model','trip');
+    $this->load->model('Trip_group_model','group');
+    $this->data['page_subtitle'] = "Dashboard";
+    $this->load->view('partial/header', $this->data);
+    $area = str_replace(" ","%20",$this->input->get('area'));
+    $destination_key = NULL;
+    if($area){
+      $params = array('url'=>$this->config->item("travel_api"));
+      $this->load->library('api', $params);
+      $destinations = json_decode($this->api->get_search_destinations($area));
+      $destination_key = array();
+      foreach ($destinations as $key => $value) {
+        array_push($destination_key, $value->id);
+      }
+    }
+
+    $trip_list = $this->trip->search_trip($destination_key,$this->input->get('budget'),$this->input->get('day'),TRUE);
+    $trip_group_list = array();
+    foreach ($trip_list as $key => $value) {
+       $trip_group_list[$value["id"]]["member"] = $this->group->get_groups_by_trip($value["id"], TRUE);
+       $participate = 0;
+       $member = 0;
+       foreach ($trip_group_list[$value["id"]]["member"] as $key => $trip_group) {
+         $participate += $trip_group["numberOfParty"];
+         $member +=1;
+       }
+       $trip_group_list[$value["id"]]["participate"] = $participate;
+       $trip_group_list[$value["id"]]["count_member"] = $member;
+    }
+    $data_trip = array("trip_list"=>$trip_list, "trip_group"=>$trip_group_list);
+
+    $params = array('url'=>$this->config->item("travel_api"));
+    $this->load->library('api', $params);
+    $location_result = json_decode($this->api->get_locations());
+
+    $content = array("content"=>"dashboard","session_data"=>$this->get_session_data(),
+               "data_trip"=>$data_trip, "locations"=>$location_result);
+    $this->load->view('partial/body', $content);
+    $this->load->view('partial/footer.php');
+
   }
 
 }

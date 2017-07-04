@@ -11,6 +11,7 @@ class MY_Model extends CI_Model {
 
   public function add_data($data){
     $this->db->insert($this->table, $data);
+    return $this->db->insert_id();
   }
 
   public function update_data($id, $data){

@@ -2,7 +2,12 @@
 <div class="wrapper">
 
 
-  <?php $this->load->view('partial/navigation', $session_data)?>
+  <?php
+  if($session_data){
+    $this->load->view('partial/navigation', $session_data);
+  }else{
+    $this->load->view('partial/navigation_blank');
+  }?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

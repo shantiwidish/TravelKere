@@ -42,7 +42,7 @@
           <img class="img-responsive pad" src="<?php echo base_url()."assets/images/upload/".$value["cover_image"]?>" alt="Photo">
         <?php } ?>
         <p><?php echo $value["description"];?></p>
-        <p><?php echo "<b>Meet Up Point</b>".$value["meetup_at"];?></p>
+        <p><?php echo "<b>Meeting Point</b>".$value["meetup_at"];?></p>
         <p><?php echo "<b>Contact Info :</b> ".$value["phone_number"];?></p>
         <span class="pull-right text-muted"><?php echo $data_trip["trip_group"][$value["id"]]["count_member"]?> member join this trip</span>
           <ul class="users-list clearfix">
@@ -66,6 +66,8 @@
               <input name="traveller_id" type="hidden" class="form-control" value="<?php echo $session_data["user_id"]?>" />
               <input name="trip_id" type="hidden" class="form-control" value="<?php echo $value["id"]?>" />
               <input name="destination_id" type="hidden" class="form-control" value="<?php echo $value["destination_id"]?>" />
+              <input name="start_at" type="hidden" class="form-control" value="<?php echo $value["start_at"]?>" />
+              <input name="end_at" type="hidden" class="form-control" value="<?php echo $value["end_at"]?>" />
               <div class="form-group has-feedback">
                 <input name="participate" type="text" class="form-control" placeholder="Number of party" required/>
               </div>

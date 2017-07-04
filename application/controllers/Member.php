@@ -38,7 +38,8 @@ class Member extends MY_Controller {
 
   public function form_register(){
     $this->load->view('partial/header', $this->data);
-    $this->load->view('register');
+    $content = array("content"=>"registration_form","session_data"=>NULL);
+    $this->load->view('partial/body', $content);
     $this->load->view('partial/footer.php');
   }
 
@@ -81,6 +82,8 @@ class Member extends MY_Controller {
       'username' => $this->input->post('username'),
       'fullname' => $this->input->post('fullname'),
       'email' => $this->input->post('email'),
+      'created_at' => date('Y-m-d H:i:s'),
+      'modified_at' => date('Y-m-d H:i:s'),
       'isActive' => 1
     );
     $data_additional = array(
@@ -115,6 +118,7 @@ class Member extends MY_Controller {
     $form_data = array(
       'fullname' => $this->input->post('fullname'),
       'phone_number' => $this->input->post('phone_number'),
+      'created_at' => date('Y-m-d H:i:s'),
       'address' => $this->input->post('address')
     );
 

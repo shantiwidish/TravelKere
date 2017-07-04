@@ -6,7 +6,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Login to start your session</p>
 
     <form action="<?php echo base_url()."/member/doLogin"?>" method="post">
       <div class="form-group has-feedback">

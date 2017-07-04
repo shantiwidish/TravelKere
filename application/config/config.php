@@ -23,8 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/TravelKere/';
-$config['travel_api'] = "http://localhost/TravelServices";
+$config['base_url'] = 'https://travelkere.000webhostapp.com/';
+$config['travel_api'] = "http://traveljakarta.unaux.com";
+$config['travel_api_2'] = "http://travelapi.rf.gd";
+// $config['travel_api'] = "http://localhost/TravelServices";
 /*
 |--------------------------------------------------------------------------
 | Index File

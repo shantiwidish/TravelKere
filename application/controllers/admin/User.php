@@ -40,6 +40,7 @@ class User extends MY_Controller {
 
   public function add(){
     $this->load->model('User_model','user');
+    $this->load->model('Admin_model','admin');
     $form_data = array(
       'username' => $this->input->post('username'),
       'fullname' => $this->input->post('fullname'),
@@ -65,7 +66,11 @@ class User extends MY_Controller {
     // if($filename){
     //   $form_data['image'] = $filename;
     // }
-    $this->user->add_data($form_data);
+    $user_id = $this->user->add_data($form_data);
+    $admin_data = array("user_id"=>$user_id,
+    'created_at' => date('Y-m-d H:i:s'),
+    'modified_at' => date('Y-m-d H:i:s'));
+    $this->admin->add_data($admin_data);
     redirect('/admin/user/');
   }
 
@@ -74,12 +79,6 @@ class User extends MY_Controller {
     $form_data = array(
       'fullname' => $this->input->post('fullname')
     );
-
-    // if($this->input->post('is_admin')!=NULL){
-    //   $form_data['is_admin'] = 1;
-    // }else{
-    //   $form_data['is_admin'] = 0;
-    // }
 
     $filename =  $this->do_upload();
     if($filename!=NULL){
@@ -91,16 +90,14 @@ class User extends MY_Controller {
 
   public function delete($id){
     $this->load->model('User_model', 'user');
-    $this->user->delete_data($id);
+    $this->user->update_data($id, array('isActive'=>0));
+    redirect('/admin/user/');
   }
 
   public function do_upload()
   {
           $config['upload_path']          = './assets/images/upload/';
           $config['allowed_types']        = 'gif|jpg|png';
-          // $config['max_size']             = 100;
-          // $config['max_width']            = 1024;
-          // $config['max_height']           = 768;
 
           $this->load->library('upload', $config);
           if ( ! $this->upload->do_upload('image'))

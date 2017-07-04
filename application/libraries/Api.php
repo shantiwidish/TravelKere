@@ -37,8 +37,8 @@ class Api{
       return $this->_ci->curl->simple_post($this->_base_url.$path, $data, array(CURLOPT_BUFFERSIZE => 10));
   }
 
-  function cancel_trip($id, $path='/api/schedules/'){
-      return $this->_ci->curl->simple_delete($this->_base_url.$path.$id);
-  }
+  // function cancel_trip($id, $path='/api/schedules/'){
+  //     return $this->_ci->curl->simple_delete($this->_base_url.$path.$id);
+  // }
 
 }

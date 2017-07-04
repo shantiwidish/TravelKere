@@ -29,15 +29,7 @@
           <input name="title" type="text" class="form-control" placeholder="Title" required>
         </div>
         <div class="form-group has-feedback">
-          <label>Cover Image</label>
-          <input name="image" type="file" class="form-control" placeholder="Cover Image">
-        </div>
-        <div class="form-group has-feedback">
-          <label>Description</label>
-          <textarea name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
-        </div>
-        <div class="form-group has-feedback">
-          <label>Meet Up Point</label>
+          <label>Meeting Point</label>
           <input name="meetup_at" type="text" class="form-control" placeholder="Gathering Place" required>
         </div>
         <div class="form-group has-feedback">
@@ -45,7 +37,7 @@
           <input name="start_at" type="text" class="form-control" placeholder="Date and Time" id="datetimepicker1" required>
         </div>
         <div class="form-group has-feedback">
-          <label>Arrival</label>
+          <label>Return</label>
           <input name="end_at" type="text" class="form-control" placeholder="Date and Time" id="datetimepicker2" required>
         </div>
         <div class="form-group has-feedback">
@@ -59,6 +51,14 @@
         <div class="form-group has-feedback">
           <label>Participate</label>
           <input name="participate" type="text" class="form-control" placeholder="Number of your existing party" required>
+        </div>
+        <div class="form-group has-feedback">
+          <label>Description</label>
+          <textarea name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+        </div>
+        <div class="form-group has-feedback">
+          <label>Cover Image</label>
+          <input name="image" type="file" class="form-control" placeholder="Cover Image">
         </div>
         <div class="form-group has-feedback">
             <label>Visibility</label>

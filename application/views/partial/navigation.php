@@ -2,7 +2,7 @@
   <nav class="navbar navbar-static-top">
     <div class="container">
       <div class="navbar-header">
-        <a href="/" class="navbar-brand"><b>Travel</b>Kere</a>
+        <a href="<?php echo base_url();?>" class="navbar-brand"><b>Travel</b>Kere</a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
           <i class="fa fa-bars"></i>
         </button>
@@ -69,7 +69,7 @@
                   <a href="<?php echo base_url()."/member/edit_profile/".$user_id?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()."/member/doLogOut"?>" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url()."/member/doLogOut"?>" class="btn btn-default btn-flat">Log out</a>
                 </div>
               </li>
             </ul>
