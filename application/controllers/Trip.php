@@ -88,18 +88,23 @@ class Trip extends MY_Controller {
       $form_data = array($data_trip, $data_group);
       $result = $this->trip->add_trip($form_data,0);
       $destination_id = $this->input->post('destination_id');
+      $start_date = explode(" ",$this->input->post('start_at'));
+      $end_date = explode(" ",$this->input->post('end_at'));
+      // 'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('start_at'))->format('Y-m-d'),
+      // 'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('end_at'))->format('Y-m-d'),
       // if($result){
+      $start_date = explode(" ",$this->input->post('start_at'));
+      $end_date = explode(" ",$this->input->post('end_at'));
         $data_api = array(
           'destination_id' => $destination_id,
-          'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('start_at'))->format('Y-m-d'),
-          'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('end_at'))->format('Y-m-d'),
+          'start_date' => $start_date[0],
+          'end_date' => $end_date[0],
           'quantity' => $this->input->post('participate')
         );
         $params = array('url'=>$this->config->item("travel_api"));
         if($destination_id>=6 && $destination_id<=20){
             $params = array('url'=>$this->config->item("travel_api_2"));
         }
-
         $this->load->library('api', $params);
         $this->api->booked_trip($data_api);
       // }
@@ -117,20 +122,21 @@ class Trip extends MY_Controller {
       'created_at' => date('Y-m-d H:i:s'),
       'modified_at' => date('Y-m-d H:i:s')
     );
-    $result = $this->trip->add_trip_group($data_group);
+    // $result = $this->trip->add_trip_group($data_group);
     $destination_id = $this->input->post('destination_id');
     // if($result){
+    $start_date = explode(" ",$this->input->post('start_at'));
+    $end_date = explode(" ",$this->input->post('end_at'));
       $data_api = array(
         'destination_id' => $destination_id,
-        'start_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('start_at'))->format('Y-m-d'),
-        'end_date' => DateTime::createFromFormat('Y-m-d H:i:s', $this->input->post('end_at'))->format('Y-m-d'),
+        'start_date' => $start_date[0],
+        'end_date' => $end_date[0],
         'quantity' => $this->input->post('participate')
       );
       $params = array('url'=>$this->config->item("travel_api"));
       if($destination_id>=6 && $destination_id<=20){
           $params = array('url'=>$this->config->item("travel_api_2"));
       }
-
       $this->load->library('api', $params);
       $this->api->booked_trip($data_api);
     // }
